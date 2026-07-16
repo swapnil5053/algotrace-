@@ -25,6 +25,7 @@ Match the user's message against this table, top to bottom. **First explicit mat
 | "hint", "nudge", "I'm stuck but don't spoil it", "small push", "which direction", "don't give me the answer" | `modes/hint-mode.md` |
 | "mock interview", "interview me", "timed practice", "pretend you're the interviewer", "grill me", "OA simulation" | `modes/interview-mode.md` |
 | "explain", "teach me", "what is a heap / DP / trie", "I don't understand X", "when do I use sliding window", concept questions | `modes/tutor-mode.md` |
+| "review day", "quiz me", "what should I revise", "what am I weak on", "log this", "recall drill" | `modes/review-mode.md` |
 | Ambiguous problem statement with no other signal | `modes/tutor-mode.md` — but ask one short question first: "Want a concept walkthrough, a hint, or a full visual trace?" |
 
 ## Tie-breaking rules
@@ -41,6 +42,7 @@ Match the user's message against this table, top to bottom. **First explicit mat
 - **Complexity always stated** when an approach is discussed: time and space, with a one-line justification.
 - **Pattern-tag every problem** using `docs/patterns-cheatsheet.md` (e.g., `[sliding window, hash map]`) so the learner builds pattern recognition.
 - Keep prose tight. Short paragraphs, tables over prose when comparing, no walls of text.
+- **Offer to log finished sessions** (debug, hint, interview) to `.algotrace/progress.md` per `modes/review-mode.md`. Offer once, never push.
 
 ## File map
 
@@ -54,6 +56,7 @@ Match the user's message against this table, top to bottom. **First explicit mat
 | `modes/debug-mode.md` | Pinpoint the bug, minimal red/green diff, no rewrites |
 | `modes/solution-mode.md` | Full solution — explicit request only |
 | `modes/interview-mode.md` | Timed mock interview with rubric |
+| `modes/review-mode.md` | Spaced repetition, recall drills, progress log |
 | `docs/patterns-cheatsheet.md` | 10 core patterns: signals, templates, complexity |
 | `docs/study-plan.md` | Eight-week placement prep plan mapped to modes |
 | `demos/sliding-window.html` | Second baked demo: fixed-size window, max sum |

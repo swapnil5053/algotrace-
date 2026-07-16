@@ -8,7 +8,7 @@ The weekly rhythm, regardless of topic:
 |---|---|
 | 1-2 | Learn or refresh the pattern (tutor mode, then the cheatsheet template) |
 | 3-5 | Solve. Get stuck properly before asking for hint level 1 |
-| 6 | Redo every problem you needed hints on, from a blank editor |
+| 6 | Review day: run review mode's recall drills on everything due, then blank-editor redos of what you missed |
 
 ## WEEK 1 — arrays, hashing, two pointers
 
@@ -63,4 +63,4 @@ The ladder exists so you always do the maximum you can do alone.
 4. Solved but slow: ask tutor mode why your complexity is what it is, then look for the pattern that removes the bottleneck.
 5. Full solution: only after a genuine attempt, and always followed by a blank-editor redo the same week.
 
-Interview follow-through: after every interview-mode session, take the single NEXT drill it gives you and do it before starting new material. One drill actually done beats a list of ten saved for later.
+Log every session you needed help on; review mode schedules the redos so you do not have to. Interview follow-through: after every interview-mode session, take the single NEXT drill it gives you and do it before starting new material. One drill actually done beats a list of ten saved for later.
