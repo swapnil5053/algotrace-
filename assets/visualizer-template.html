@@ -40,27 +40,27 @@
     --node-inert: #e2e8f0;
   }
   :root[data-theme="dark"] {
-    --green: #4ade80;
-    --red:   #f87171;
-    --blue:  #60a5fa;
-    --gray:  #64748b;
-    --ink:   #e2e8f0;
-    --paper: #0f172a;
-    --card:  #111827;
-    --inert-fill: #1e293b;
-    --node-inert: #334155;
+    --green: #6fbf82;
+      --red:   #e07b73;
+      --blue:  #82a5f0;
+      --gray:  #98968f;
+      --ink:   #e8e6e1;
+      --paper: #262624;
+      --card:  #30302e;
+      --inert-fill: #3a3935;
+      --node-inert: #4a4842;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --green: #4ade80;
-      --red:   #f87171;
-      --blue:  #60a5fa;
-      --gray:  #64748b;
-      --ink:   #e2e8f0;
-      --paper: #0f172a;
-      --card:  #111827;
-      --inert-fill: #1e293b;
-      --node-inert: #334155;
+      --green: #6fbf82;
+      --red:   #e07b73;
+      --blue:  #82a5f0;
+      --gray:  #98968f;
+      --ink:   #e8e6e1;
+      --paper: #262624;
+      --card:  #30302e;
+      --inert-fill: #3a3935;
+      --node-inert: #4a4842;
     }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -308,7 +308,7 @@ el("speed").addEventListener("click", () => {
 });
 el("theme").addEventListener("click", () => {
   const r = document.documentElement;
-  const dark = getComputedStyle(r).getPropertyValue("--paper").trim() === "#0f172a";
+  const dark = getComputedStyle(r).getPropertyValue("--paper").trim() === "#262624";
   r.setAttribute("data-theme", dark ? "light" : "dark");
 });
 el("title").textContent = VIZ.title;
