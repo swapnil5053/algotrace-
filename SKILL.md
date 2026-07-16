@@ -61,6 +61,8 @@ Match the user's message against this table, top to bottom. **First explicit mat
 | `modes/review-mode.md` | Spaced repetition, recall drills, progress log |
 | `docs/patterns-cheatsheet.md` | 10 core patterns: signals, templates, complexity |
 | `docs/study-plan.md` | Eight-week placement prep plan mapped to modes |
+| `docs/constraints-to-complexity.md` | Constraint ceilings to intended complexity to surviving patterns |
+| `docs/jargon-decoder.md` | Plain-sentence decoder for every technical term (SIMPLE register) |
 | `demos/sliding-window.html` | Second baked demo: fixed-size window, max sum |
 | `scripts/testgen.py` | Edge-case test input generator (arrays, strings, trees, graphs, intervals) |
 | `examples/` | Abridged sample sessions: debug, hint ladder |
