@@ -43,12 +43,32 @@ No commands, no setup. The skill routes on intent.
 | "mock interview me, medium, 45 min" | interview | Timed phases, hints that cost points, a scored rubric |
 | "review day" | review | Spaced-repetition recall drills from your progress log, plus a weakness report |
 
+There is also a plain-words register: say "say it simply" and every explanation drops the jargon — each term decoded per `docs/jargon-decoder.md`, one everyday analogy, same frames.
+
 Debug mode is the reason this exists. It finds the bug, proves it with a trace, and the fix is one line — not a rewrite:
 
 ```diff
 -    for i in range(k, len(nums) - 1):
 +    for i in range(k, len(nums)):
 ```
+
+## What a real session looks like
+
+Ask `visualize longest substring without repeating characters on "abcabcbb"`:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/screenshots/session-lc3-dark.png">
+  <img alt="sliding window frame at the first collision" src="assets/screenshots/session-lc3.png">
+</picture>
+
+Ask `visualize valid parentheses on "([{}])"` and the stack breathes beside the input:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/screenshots/session-lc20-dark.png">
+  <img alt="stack frame at the first matched pair" src="assets/screenshots/session-lc20.png">
+</picture>
+
+Every response is frames like these: one algorithmic decision per frame, one line saying why.
 
 ## The step players
 
@@ -63,6 +83,8 @@ Full walkthroughs become one self-contained HTML file: prev/next/play, keyboard 
 ## Also in here
 
 - `docs/patterns-cheatsheet.md` — ten patterns: signal words, when to use, template, complexity.
+- `docs/constraints-to-complexity.md` — read the constraints, get the intended complexity, cross out patterns that are too slow. The fastest OA habit there is.
+- `docs/jargon-decoder.md` — every scary term in one plain sentence.
 - `docs/study-plan.md` — eight weeks of placement prep mapped to the modes.
 - `scripts/testgen.py` — edge-case input generator for when hidden tests fail you (`python -m unittest discover -s scripts` to test it).
 - `examples/` — real transcripts of a debug session and a hint ladder.
