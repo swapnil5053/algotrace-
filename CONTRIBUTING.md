@@ -18,6 +18,6 @@ Thanks for the interest. This project is a Claude skill, so most contributions a
 
 ## Testing a change
 
-There is no test suite; the skill is prompts. To sanity-check a mode change, load the skill in Claude Code and run the trigger phrases listed at the top of the mode file. For demo changes, open the file in a browser with JavaScript disabled first, then enabled.
+Run `python -m unittest discover -s scripts` for the generator tests. The skill itself is prompts, so mode changes are checked by hand: To sanity-check a mode change, load the skill in Claude Code and run the trigger phrases listed at the top of the mode file. For demo changes, open the file in a browser with JavaScript disabled first, then enabled.
 
 Open an issue before large restructures.
