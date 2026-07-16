@@ -35,6 +35,33 @@
     --gray:  #94a3b8;
     --ink:   #1e293b;
     --paper: #f8fafc;
+    --card:  #ffffff;
+    --inert-fill: #f1f5f9;
+    --node-inert: #e2e8f0;
+  }
+  :root[data-theme="dark"] {
+    --green: #4ade80;
+    --red:   #f87171;
+    --blue:  #60a5fa;
+    --gray:  #64748b;
+    --ink:   #e2e8f0;
+    --paper: #0f172a;
+    --card:  #111827;
+    --inert-fill: #1e293b;
+    --node-inert: #334155;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --green: #4ade80;
+      --red:   #f87171;
+      --blue:  #60a5fa;
+      --gray:  #64748b;
+      --ink:   #e2e8f0;
+      --paper: #0f172a;
+      --card:  #111827;
+      --inert-fill: #1e293b;
+      --node-inert: #334155;
+    }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -48,7 +75,7 @@
   .viz {
     width: 100%;
     max-width: 720px;
-    background: #ffffff;
+    background: var(--card);
     border: 1px solid var(--ink);
     padding: 24px;
   }
@@ -72,8 +99,8 @@
     font-variant-numeric: tabular-nums;
   }
   .cell.blue  { border-color: var(--blue);  border-width: 2.5px; color: var(--blue); }
-  .cell.green { border-color: var(--green); background: rgba(22,163,74,0.12); color: var(--green); font-weight: 700; }
-  .cell.red   { border-color: var(--red);   background: rgba(220,38,38,0.10); color: var(--red); }
+  .cell.green { border-color: var(--green); background: color-mix(in srgb, var(--green) 14%, transparent); color: var(--green); font-weight: 700; }
+  .cell.red   { border-color: var(--red);   background: color-mix(in srgb, var(--red) 12%, transparent); color: var(--red); }
   .cell.gray  { border-color: var(--gray);  color: var(--gray); background: #f1f5f9; }
 
   /* index row */
@@ -120,6 +147,8 @@
     <button id="prev">&#8592; Prev</button>
     <button id="play">Play</button>
     <button id="next">Next &#8594;</button>
+    <button id="speed" title="playback speed">1x</button>
+    <button id="theme" title="toggle light/dark">Theme</button>
     <span class="step" id="step">Step 1 / 6</span>
   </div>
 
@@ -184,7 +213,7 @@ const VIZ = {
 
 let current = 0;
 let timer = null;
-const PLAY_MS = 1400;
+let PLAY_MS = 1400;
 
 const el = id => document.getElementById(id);
 
@@ -256,7 +285,7 @@ function togglePlay() {
   timer = setInterval(() => {
     if (current < VIZ.frames.length - 1) go(current + 1);
     else stopPlay();
-  }, PLAY_MS);
+  }, SPEEDS[speedIdx][0]);
 }
 
 el("prev").addEventListener("click", () => { stopPlay(); go(current - 1); });
@@ -269,6 +298,19 @@ document.addEventListener("keydown", e => {
   if (e.key === " ")          { e.preventDefault(); togglePlay(); }
 });
 
+
+const SPEEDS = [[1400, "1x"], [900, "1.5x"], [560, "2x"]];
+let speedIdx = 0;
+el("speed").addEventListener("click", () => {
+  speedIdx = (speedIdx + 1) % SPEEDS.length;
+  el("speed").textContent = SPEEDS[speedIdx][1];
+  if (timer) { stopPlay(); togglePlay(); }
+});
+el("theme").addEventListener("click", () => {
+  const r = document.documentElement;
+  const dark = getComputedStyle(r).getPropertyValue("--paper").trim() === "#0f172a";
+  r.setAttribute("data-theme", dark ? "light" : "dark");
+});
 el("title").textContent = VIZ.title;
 el("subtitle").textContent = VIZ.subtitle || "";
 go(0);
