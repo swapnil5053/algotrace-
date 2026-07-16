@@ -10,7 +10,7 @@ I built this because every AI assistant I tried during placement prep did the sa
 
 Every trace it produces looks like this, whether inline in chat or in an interactive step player:
 
-![binary search trace, found at index 5](assets/readme-trace.svg)
+![binary search demo, each probe eliminates half](assets/demo.gif)
 
 Four colors with fixed meanings. Blue is the pointer, green is found or in-window, red is eliminated, gray is processed. Nothing else, by contract.
 
@@ -62,6 +62,8 @@ Full walkthroughs become a single self-contained HTML file with prev/next/play c
 | `demos/bfs-graph.html` | BFS on a graph with SVG frames: frontier, queue state, why it finds shortest paths |
 
 Open any of them in a browser. They render a static first frame even with JavaScript disabled, so previews never show a blank page.
+
+![bfs step player at the frame where the target enters the queue](assets/screenshots/bfs-graph.png)
 
 ## What else is in here
 
@@ -115,7 +117,8 @@ algotrace/
 ├── assets/
 │   ├── style-contract.md          the formatting and color rules every mode follows
 │   ├── visualizer-template.html   interactive step player, binary search baked in
-│   └── readme-trace.svg           the figure above
+│   ├── demo.gif                   the animation above
+│   └── screenshots/               player stills used here and by directories
 ├── demos/
 │   ├── sliding-window.html        fixed-size window, max sum
 │   └── bfs-graph.html             BFS with SVG graph frames
