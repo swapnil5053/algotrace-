@@ -2,26 +2,25 @@
 
 A Claude skill that teaches data structures and algorithms by drawing every step.
 
-![MIT license](https://img.shields.io/badge/license-MIT-16a34a)
 ![Claude Code skill](https://img.shields.io/badge/claude_code-skill-2563eb)
-![Dependencies](https://img.shields.io/badge/dependencies-none-94a3b8)
 
-Every AI assistant I tried during placement prep would take my almost-right solution and hand back a rewritten, fully correct one — and I'd learn nothing. algotrace is the opposite: it coaches by default, draws by default, and only gives complete code when you say, in plain words, that you want it.
+
+Most AI assistants take your almost-right solution and hand back a rewritten, fully correct one. You learn nothing. algotrace coaches by default, draws by default, and only gives complete code when you ask for it in plain words.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/demo-dark.gif">
   <img alt="binary search demo, each probe eliminates half" src="assets/demo.gif">
 </picture>
 
-Four colors with fixed meanings: blue is the pointer, green is found, red is eliminated, gray is processed. Nothing else, by contract.
+Four colors, fixed meanings, nothing else: blue is the pointer, green is found, red is eliminated, gray is processed.
 
-## The first five minutes
+## Install
 
 ```bash
 git clone https://github.com/swapnil5053/algotrace- ~/.claude/skills/algotrace
 ```
 
-Open a new Claude Code session and paste any of these:
+Open a Claude Code session and just talk to it — no commands, no setup:
 
 ```text
 visualize binary search for 23 in [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
@@ -29,91 +28,93 @@ debug this: [your broken code] fails on [1,2,3,4,10], expected 14 got 7
 I'm stuck on longest substring without repeating characters. do not spoil it.
 ```
 
-No commands, no setup. The skill routes on intent.
+Claude.ai users: upload `SKILL.md`, `modes/`, and `assets/style-contract.md` to a project's knowledge base and add "Follow SKILL.md" to its instructions.
 
-## The seven modes
+## Modes
 
-| You say | Mode | What you get |
+| Say this | Mode | Get this |
 |---|---|---|
-| "visualize binary search on [2,5,8,...]" | visualize | A frame-by-frame trace, inline or as an interactive step player |
-| "explain monotonic stack" | tutor | Definition, intuition, a small trace, pitfalls, one check question |
-| "I'm stuck on LC 3, don't spoil it" | hint | Five levels: observation, pattern, invariant, technique, skeleton. One per message |
-| paste code + "why does this fail?" | debug | The specific bug, proven with a trace to the exact step where your code diverges |
-| "just give me the full code in Java" | solution | Clean commented code with complexity. Only fires on an explicit ask |
+| "visualize binary search on [2,5,8,...]" | visualize | Frame-by-frame trace, inline or as an interactive step player |
+| "explain monotonic stack" | tutor | Definition, intuition, small trace, pitfalls, one check question |
+| "I'm stuck on LC 3, don't spoil it" | hint | Five levels — observation → pattern → invariant → technique → skeleton — one per message |
+| paste code + "why does this fail?" | debug | The exact bug, proven with a trace to where your code diverges |
+| "just give me the full code in Java" | solution | Clean, commented code with complexity — only on explicit ask |
 | "mock interview me, medium, 45 min" | interview | Timed phases, hints that cost points, a scored rubric |
-| "review day" | review | Spaced-repetition recall drills from your progress log, plus a weakness report |
+| "review day" | review | Spaced-repetition drills from your progress log, plus a weakness report |
 
-There is also a plain-words register: say "say it simply" and every explanation drops the jargon — each term decoded per `docs/jargon-decoder.md`, one everyday analogy, same frames.
+Say "say it simply" anytime to drop the jargon — same frames, one plain-English analogy per term.
 
-Debug mode is the reason this exists. It finds the bug, proves it with a trace, and the fix is one line — not a rewrite:
+Debug mode is the core of this skill. It proves the bug with a trace, then the fix is one line:
 
 ```diff
 -    for i in range(k, len(nums) - 1):
 +    for i in range(k, len(nums)):
 ```
 
-## What a real session looks like
+## More traces
 
-Ask `visualize longest substring without repeating characters on "abcabcbb"`:
+`visualize longest substring without repeating characters on "abcabcbb"`
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/screenshots/session-lc3-dark.png">
   <img alt="sliding window frame at the first collision" src="assets/screenshots/session-lc3.png">
 </picture>
 
-Ask `visualize valid parentheses on "([{}])"` and the stack breathes beside the input:
+`visualize valid parentheses on "([{}])"`
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/screenshots/session-lc20-dark.png">
   <img alt="stack frame at the first matched pair" src="assets/screenshots/session-lc20.png">
 </picture>
 
-Every response is frames like these: one algorithmic decision per frame, one line saying why.
+## Step players
 
-## The step players
-
-Full walkthroughs become one self-contained HTML file: prev/next/play, keyboard navigation, playback speed, and a light/dark theme that follows your system. Three demos are baked in — open them straight from the repo:
-`assets/visualizer-template.html` (binary search), `demos/sliding-window.html`, `demos/bfs-graph.html` (graph frames).
+Full walkthroughs compile into a single self-contained HTML file: prev/next/play, keyboard nav, playback speed, light/dark theme. Three ship in the repo:
+`assets/visualizer-template.html` (binary search), `demos/sliding-window.html`, `demos/bfs-graph.html`.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/screenshots/bfs-graph-dark.png">
   <img alt="bfs step player at the frame where the target enters the queue" src="assets/screenshots/bfs-graph.png">
 </picture>
 
-## Also in here
+## What's in the repo
 
-- `docs/patterns-cheatsheet.md` — ten patterns: signal words, when to use, template, complexity.
-- `docs/constraints-to-complexity.md` — read the constraints, get the intended complexity, cross out patterns that are too slow. The fastest OA habit there is.
-- `docs/jargon-decoder.md` — every scary term in one plain sentence.
-- `docs/study-plan.md` — eight weeks of placement prep mapped to the modes.
-- `scripts/testgen.py` — edge-case input generator for when hidden tests fail you (`python -m unittest discover -s scripts` to test it).
-- `examples/` — real transcripts of a debug session and a hint ladder.
-- A progress log (`.algotrace/progress.md`, created on first use) that schedules your redos at expanding intervals.
+```
+algotrace/
+├── SKILL.md                       # router + format contract
+├── modes/                         # the seven modes
+├── assets/style-contract.md       # the four-color visual spec
+├── docs/
+│   ├── patterns-cheatsheet.md     # ten patterns: signal, template, complexity
+│   ├── constraints-to-complexity.md
+│   ├── jargon-decoder.md
+│   └── study-plan.md              # eight-week prep plan mapped to modes
+├── scripts/testgen.py             # edge-case input generator
+├── examples/                      # sample debug + hint transcripts
+└── .algotrace/progress.md         # created on first use, drives spaced repetition
+```
 
-## How it compares
+## Comparison
 
-Against the most visible alternatives, July 2026: [algo-sensei](https://github.com/karanb192/algo-sensei), [peppermint leetcode-skill](https://github.com/peppermint-ai-lab/leetcode-skill), [LeetCode Teacher](https://github.com/luqmannurhakimbazman/ashford).
+vs. [algo-sensei](https://github.com/karanb192/algo-sensei), [peppermint leetcode-skill](https://github.com/peppermint-ai-lab/leetcode-skill), [LeetCode Teacher](https://github.com/luqmannurhakimbazman/ashford) — July 2026.
 
 | | algotrace | algo-sensei | peppermint | LeetCode Teacher |
 |---|---|---|---|---|
-| Visualization | core feature, contractual | roadmap item | ASCII "when helpful" | none |
-| Debug your own code | dedicated mode with proof traces | code review | post-submission feedback | none |
-| Progress + spaced repetition | log, drills, weakness report | roadmap item | tracking only | profile only |
-| Test input generator | yes, unit tested | roadmap item | no | no |
+| Visualization | core, contractual | roadmap | ASCII, sometimes | none |
+| Debug your own code | dedicated mode + proof trace | code review | post-submission feedback | none |
+| Progress + spaced repetition | log, drills, weakness report | roadmap | tracking only | profile only |
+| Test input generator | yes, unit tested | roadmap | no | no |
 | Enforced visual style | strict contract file | no | no | no |
 
-The one honest trade: peppermint generates original problems and researches company questions; algotrace drills you on problems you bring. If problem supply is your bottleneck, use both.
+Peppermint generates original problems and researches company-specific questions; Algotrace drills you on problems you bring. Use both if the problem with supply is your bottleneck.
 
-## Questions people actually ask
+## FAQ
 
-**Why not just prompt Claude directly?** You can, and it drifts — one day a wall of text, the next a full solution you didn't want. The skill pins the behavior: one router, one format contract, guardrails that survive long conversations.
+**Why not just prompt Claude directly?** You can, and it drifts. The skill pins the behavior: one router, one format contract, guardrails that hold over long sessions.
 
-**Will it refuse to give me answers?** No. Solution mode is one sentence away, always. It just won't hand you the answer while you're still asking for a hint.
+**Will it refuse to give me the answer?** No — solution mode is one sentence away. It just won't hand it over while you're still asking for a hint.
 
-Python, Java, C++ and JavaScript are first-class throughout. Claude.ai users: upload `SKILL.md`, `modes/`, and `assets/style-contract.md` to a project's knowledge and add "Follow SKILL.md" to its instructions.
+Python, Java, C++, and JavaScript are first-class throughout.
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md). A wrong cell in a frame counts as a bug; there is an issue template for exactly that.
 
 MIT licensed.
