@@ -1,6 +1,6 @@
 # algotrace
 
-A Claude skill that teaches data structures and algorithms by drawing every step.
+A Claude Code skill for mastering data structures and algorithms through step-by-step visualizations, guided debugging, and coaching-first explanations.
 
 ![Claude Code skill](https://img.shields.io/badge/claude_code-skill-2563eb)
 
@@ -14,10 +14,10 @@ Most AI assistants take your almost-right solution and hand back a rewritten, fu
 
 Four colors, fixed meanings, nothing else: blue is the pointer, green is found, red is eliminated, gray is processed.
 
-## Install
+## Installation
 
 ```bash
-git clone https: https://github.com/swapnil5053/algotrace.git ~/.claude/skills/algotrace
+git clone https://github.com/swapnil5053/algotrace.git ~/.claude/skills/algotrace
 ```
 
 Open a Claude Code session and just talk to it — no commands, no setup:
@@ -51,7 +51,7 @@ Debug mode is the core of this skill. It proves the bug with a trace, then the f
 +    for i in range(k, len(nums)):
 ```
 
-## More traces
+## Example walkthroughs
 
 `visualize longest substring without repeating characters on "abcabcbb"`
 
@@ -67,7 +67,7 @@ Debug mode is the core of this skill. It proves the bug with a trace, then the f
   <img alt="stack frame at the first matched pair" src="assets/screenshots/session-lc20.png">
 </picture>
 
-## Step players
+## Interactive walkthroughs
 
 Full walkthroughs compile into a single self-contained HTML file: prev/next/play, keyboard nav, playback speed, light/dark theme. Three ship in the repo:
 `assets/visualizer-template.html` (binary search), `demos/sliding-window.html`, `demos/bfs-graph.html`.
@@ -77,7 +77,7 @@ Full walkthroughs compile into a single self-contained HTML file: prev/next/play
   <img alt="bfs step player at the frame where the target enters the queue" src="assets/screenshots/bfs-graph.png">
 </picture>
 
-## What's in the repo
+## Repository structure
 
 ```
 algotrace/
@@ -108,6 +108,14 @@ vs. [algo-sensei](https://github.com/karanb192/algo-sensei), [peppermint leetcod
 
 Peppermint generates original problems and researches company-specific questions; Algotrace drills you on problems you bring. Use both if the problem with supply is your bottleneck.
 
+## Roadmap
+
+- More algorithm visualizations
+- Graph and tree animations
+- Additional interview patterns
+- VS Code integration
+- More interactive walkthroughs
+
 ## FAQ
 
 **Why not just prompt Claude directly?** You can, and it drifts. The skill pins the behavior: one router, one format contract, guardrails that hold over long sessions.
@@ -118,3 +126,5 @@ Python, Java, C++, and JavaScript are first-class throughout.
 
 
 MIT licensed.
+
+Built for students who want to understand why an algorithm works—not just copy the final answer.
