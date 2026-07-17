@@ -17,7 +17,7 @@ Four colors, fixed meanings, nothing else: blue is the pointer, green is found, 
 ## Install
 
 ```bash
-git clone https://github.com/swapnil5053/algotrace- ~/.claude/skills/algotrace
+git clone https: https://github.com/swapnil5053/algotrace.git
 ```
 
 Open a Claude Code session and just talk to it — no commands, no setup:
