@@ -77,6 +77,22 @@ Full walkthroughs compile into a single self-contained HTML file: prev/next/play
   <img alt="bfs step player at the frame where the target enters the queue" src="assets/screenshots/bfs-graph.png">
 </picture>
 
+## Outside Claude Code
+
+`prompts/universal-system-prompt.md` ports the same coaching default, five-level hint ladder, and refusal to rewrite your almost-right code into flat text that fits inside any system-prompt box.
+
+It ships in tiers because those boxes have character limits and the full prompt is ~22k:
+
+| Surface | Limit | Paste |
+|---|---|---|
+| ChatGPT custom instructions | ~1.5k | Tier 1 (kernel) |
+| ChatGPT custom GPT | ~8k | Tier 1, then attach the file as Knowledge |
+| ChatGPT projects | large | Tier 3 (full prompt) |
+| Gemini gems | large | Tier 3 |
+| Plain chat, no config | n/a | Tier 3 as your first message |
+
+ChatGPT validates wrong answers and folds the moment you push back; Gemini dumps the whole solution unprompted. The prompt has guardrails aimed at each. Progress doesn't persist without memory, so `/save` prints a state block you paste back next session.
+
 ## Repository structure
 
 ```
@@ -84,6 +100,8 @@ algotrace/
 ├── SKILL.md                       # router + format contract
 ├── modes/                         # the seven modes
 ├── assets/style-contract.md       # the four-color visual spec
+├── prompts/
+│   └── universal-system-prompt.md # portable prompt for ChatGPT, Gemini, etc.
 ├── docs/
 │   ├── patterns-cheatsheet.md     # ten patterns: signal, template, complexity
 │   ├── constraints-to-complexity.md
